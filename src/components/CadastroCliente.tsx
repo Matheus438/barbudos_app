@@ -1,6 +1,6 @@
 import React,{Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
-import style from "../App.module.css"
+import styles from '../App.module.css';
 import Footer from "./Footer"
 import Header from "./Header"
 import axios from "axios";
@@ -53,7 +53,7 @@ const CadastroCliente = () => {
             }
         }
         ).then(function(response){
-            window.location.href = "/listagemClientes"
+            window.location.href = "/listagem"
         }).catch(function(error){
             console.log(error)
         })
@@ -107,7 +107,7 @@ const CadastroCliente = () => {
     return (
         <div>
             <Header />
-            <main className={style.main}>
+            <main className={styles.main}>
                 <div className="container">
                     <div className='card'>
                         <div className='card-body'>

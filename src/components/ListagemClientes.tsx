@@ -5,8 +5,8 @@ import React, {
 import styles from '../App.module.css';
 import { CadastroClienteInterface } from "../interface/CadastroClientes";
 
-const listagemClientes = () => {
-    const [nome, setNome] = useState<CadastroClienteInterface[]>([]);
+const ListagemClientes = () => {
+    const [clientes, setClientes] = useState<CadastroClienteInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
@@ -30,11 +30,10 @@ const listagemClientes = () => {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        setNome(response.data.data);
+                        setClientes(response.data.data);
                     }).catch(function (error) {
                         console.log(error);
                     });
-
             } catch (error) {
                 console.log(error);
             }
@@ -43,19 +42,18 @@ const listagemClientes = () => {
     }
 
     useEffect(() => {
-        async function fatchData() {
+        async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/retornarTudo');
-            console.log(response.data.data)
-            //    setNome(response.data.data);
-                
+                console.log(response.data.data);
+                setClientes(response.data.data);
             } catch (error) {
                 setError("Ocrreu um erro");
                 console.log(error)
             }
         }
 
-        fatchData();
+        fetchData();
     }, []);
 
     return (
@@ -109,23 +107,23 @@ const listagemClientes = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {nome.map(nome => (
-                                        <tr key={nome.id}>
-                                            <td>{nome.id}</td>
-                                            <td>{nome.nome}</td>
-                                            <td>{nome.celular}</td>
-                                            <td>{nome.email}r</td>
-                                            <td>{nome.cpf}r</td>
-                                            <td>{nome.nascimento}r</td>
-                                            <td>{nome.cidade}r</td>
-                                            <td>{nome.estado}r</td>
-                                            <td>{nome.pais}r</td>
-                                            <td>{nome.rua}r</td>
-                                            <td>{nome.numero}r</td>
-                                            <td>{nome.bairro}r</td>
-                                            <td>{nome.cep}r</td>
-                                            <td>{nome.complemento}r</td>
-                                            <td>{nome.password}r</td>
+                                    {clientes.map(clientes => (
+                                        <tr key={clientes.id}>
+                                            <td>{clientes.id}</td>
+                                            <td>{clientes.nome}</td>
+                                            <td>{clientes.celular}</td>
+                                            <td>{clientes.email}r</td>
+                                            <td>{clientes.cpf}r</td>
+                                            <td>{clientes.nascimento}r</td>
+                                            <td>{clientes.cidade}r</td>
+                                            <td>{clientes.estado}r</td>
+                                            <td>{clientes.pais}r</td>
+                                            <td>{clientes.rua}r</td>
+                                            <td>{clientes.numero}r</td>
+                                            <td>{clientes.bairro}r</td>
+                                            <td>{clientes.cep}r</td>
+                                            <td>{clientes.complemento}r</td>
+                                            <td>{clientes.password}r</td>
 
                                             <td>
                                                 <a href="#" className='btn btn-primary btn-sm'>Editar</a>
@@ -142,4 +140,4 @@ const listagemClientes = () => {
         </div>
     );
 }
-export default listagemClientes;
+export default ListagemClientes;
