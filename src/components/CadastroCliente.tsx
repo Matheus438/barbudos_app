@@ -53,6 +53,7 @@ const CadastroCliente = () => {
             }
         }
         ).then(function(response){
+            console.log(response.data)
             window.location.href = "/listagem"
         }).catch(function(error){
             console.log(error)

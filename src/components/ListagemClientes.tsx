@@ -79,60 +79,61 @@ const ListagemClientes = () => {
                         </div>
                     </div>
 
-
-                    <div className='card'>
-                        <div className='card-body'>
-                            <h5 className='card-title'>
-                                Listagem de Usuários
-                            </h5>
-                            <table className='table table-hover '>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nome</th>
-                                        <th>celular</th>
-                                        <th>email</th>
-                                        <th>cpf</th>
-                                        <th>nascimento</th>
-                                        <th>cidade</th>
-                                        <th>estado</th>
-                                        <th>pais</th>
-                                        <th>rua</th>
-                                        <th>numero</th>
-                                        <th>bairro</th>
-                                        <th>cep</th>
-                                        <th>complemento</th>
-                                        <th>senha</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {clientes.map(clientes => (
-                                        <tr key={clientes.id}>
-                                            <td>{clientes.id}</td>
-                                            <td>{clientes.nome}</td>
-                                            <td>{clientes.celular}</td>
-                                            <td>{clientes.email}r</td>
-                                            <td>{clientes.cpf}r</td>
-                                            <td>{clientes.nascimento}r</td>
-                                            <td>{clientes.cidade}r</td>
-                                            <td>{clientes.estado}r</td>
-                                            <td>{clientes.pais}r</td>
-                                            <td>{clientes.rua}r</td>
-                                            <td>{clientes.numero}r</td>
-                                            <td>{clientes.bairro}r</td>
-                                            <td>{clientes.cep}r</td>
-                                            <td>{clientes.complemento}r</td>
-                                            <td>{clientes.password}r</td>
-
-                                            <td>
-                                                <a href="#" className='btn btn-primary btn-sm'>Editar</a>
-                                                <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
-                                            </td>
+                    <div className='container'>
+                        <div className='card'>
+                            <div className='card-body '>
+                                <h5 className='card-title'>
+                                    Listagem de Usuários
+                                </h5>
+                                <table className='table table-hover '>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>celular</th>
+                                            <th>email</th>
+                                            <th>cpf</th>
+                                            <th>nascimento</th>
+                                            <th>cidade</th>
+                                            <th>estado</th>
+                                            <th>pais</th>
+                                            <th>rua</th>
+                                            <th>numero</th>
+                                            <th>bairro</th>
+                                            <th>cep</th>
+                                            <th>complemento</th>
+                                            <th>senha</th>
+                                            <th>Ações</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {clientes.map(clientes => (
+                                            <tr key={clientes.id}>
+                                                <td>{clientes.id}</td>
+                                                <td>{clientes.nome}</td>
+                                                <td>{clientes.celular}</td>
+                                                <td>{clientes.email}r</td>
+                                                <td>{clientes.cpf}r</td>
+                                                <td>{clientes.nascimento}r</td>
+                                                <td>{clientes.cidade}r</td>
+                                                <td>{clientes.estado}r</td>
+                                                <td>{clientes.pais}r</td>
+                                                <td>{clientes.rua}r</td>
+                                                <td>{clientes.numero}r</td>
+                                                <td>{clientes.bairro}r</td>
+                                                <td>{clientes.cep}r</td>
+                                                <td>{clientes.complemento}r</td>
+                                                <td>{clientes.password}r</td>
+
+                                                <td>
+                                                    <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                    <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
