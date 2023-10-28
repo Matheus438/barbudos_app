@@ -6,6 +6,8 @@ import {
      Route,
      Routes
 } from "react-router-dom";
+import CadastroServico from "../components/CadastroServico";
+import ListagemServicos from "../components/ListagemServico";
 
 const AppRouter = () => {
     return (
@@ -13,6 +15,8 @@ const AppRouter = () => {
         <Routes>
             <Route path="cadastro" element={<CadastroCliente/>}/>
             <Route path="listagem" element={<ListagemClientes/>}/>
+            <Route path="cadastroServico" element={<CadastroServico/>}/>
+            <Route path="listagemServico" element={<ListagemServicos/>}/>
         </Routes>
         </BrowserRouter>
     );
