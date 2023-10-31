@@ -2,11 +2,12 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
+import { isSetAccessorDeclaration } from "typescript";
 import styles from '../App.module.css';
-import { CadastroClienteInterface } from "../interface/CadastroClientes";
+import { CadastroProfissionaisInterface } from "../interface/CadastroProfissionais";
 
-const ListagemClientes = () => {
-    const [clientes, setClientes] = useState<CadastroClienteInterface[]>([]);
+const ListagemProfissionais = () => {
+    const [profissionais, setProfissionais] = useState<CadastroProfissionaisInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
@@ -22,7 +23,7 @@ const ListagemClientes = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
                     { nome: pesquisa },
                     {
                         headers: {
@@ -33,8 +34,8 @@ const ListagemClientes = () => {
                 ).then(function (response) {
                     if (true === response.data.status) {
                         console.log(response.data.status)
-                        setClientes(response.data.data)
-                    }else setClientes([])
+                        setProfissionais(response.data.data)
+                    }else setProfissionais([])
                 }).catch(function (error) {
                     console.log(error)
                 });
@@ -49,9 +50,9 @@ const ListagemClientes = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudo');
+                const response = await axios.get('http://127.0.0.1:8000/api/retornartodosProfissionais');
                 console.log(response.data.data);
-                setClientes(response.data.data);
+                setProfissionais(response.data.data);
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error)
@@ -88,7 +89,7 @@ const ListagemClientes = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Usuários
+                                    Listagem de Profissionais
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>
@@ -96,19 +97,20 @@ const ListagemClientes = () => {
                                             <th>ID</th>
                                             <th>Nome</th>
                                             <th>celular</th>
-                                            <th>email</th>
-                                            <th>cpf</th> 
+                                            <th>salario</th>
+                                            <th>E-mail</th>
+                                            <th>Cpf</th> 
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {clientes.map(clientes => (
-                                            <tr key={clientes.id}>
-                                                <td>{clientes.id}</td>
-                                                <td>{clientes.nome}</td>
-                                                <td>{clientes.celular}</td>
-                                                <td>{clientes.email}</td>
-                                                <td>{clientes.cpf}</td>
+                                        {profissionais.map(profissionais => (
+                                            <tr key={profissionais.id}>
+                                                <td>{profissionais.id}</td>
+                                                <td>{profissionais.nome}</td>                                                <td>{profissionais.salario}</td>
+                                                <td>{profissionais.celular}</td>
+                                                <td>{profissionais.email}</td>
+                                                <td>{profissionais.cpf}</td>
 
                                                 <td>
                                                     <a href="#" className='btn btn-primary btn-sm'>Editar</a>
@@ -126,4 +128,4 @@ const ListagemClientes = () => {
         </div>
     );
 }
-export default ListagemClientes;
+export default ListagemProfissionais;

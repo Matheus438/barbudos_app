@@ -62,8 +62,8 @@ const ListagemServicos = () => {
                 <div className='container'>
 
                     <div className='col-md mb-3'>
-                        <div className='card'>
-                            <div className='card-body'>
+                        <div className='card    '>
+                            <div className='card-body '>
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
@@ -90,9 +90,9 @@ const ListagemServicos = () => {
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>descrição</th>
-                                            <th>duraçao</th>
-                                            <th>preço</th>
+                                            <th>Descrição</th>
+                                            <th>Duraçao</th>
+                                            <th>Preço</th>
                                         </tr>
                                     </thead>
                                     <tbody>

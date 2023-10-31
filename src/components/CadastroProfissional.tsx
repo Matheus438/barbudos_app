@@ -6,7 +6,7 @@ import Header from "./Header"
 import axios from "axios";
 
 
-const CadastroCliente = () => {
+const CadastroProfssional = () => {
     const [nome, setNome] = useState<string>("");
     const [celular,setCelular] = useState<string>("");
     const [email,setEmail] = useState<string>("");
@@ -20,9 +20,10 @@ const CadastroCliente = () => {
     const [bairro,setBairro] = useState<string>("");
     const [cep,setCep] = useState<string>("");
     const [complemento,setComplemento] = useState<string>("");
+    const [salario,setSalario] = useState<string>("");
     const [password,setPassword] = useState<string>("");
     
-    const cadastrarCliente = (e: FormEvent) => {
+    const cadastrarProfissionais = (e: FormEvent) => {
         e.preventDefault();
 
         const dados = {
@@ -39,12 +40,13 @@ const CadastroCliente = () => {
             bairro: bairro,
             cep: cep,
             complemento: complemento,
+            salario: salario,
             password: password
         }
 
         console.log(dados)
 
-        axios.post('http://127.0.0.1:8000/api/criarCliente',
+        axios.post('http://127.0.0.1:8000/api/criarProfissional',
         dados,
         {
             headers:{
@@ -54,7 +56,7 @@ const CadastroCliente = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagem"
+            window.location.href = "/listagemProfissional"
         }).catch(function(error){
             console.log(error)
         })
@@ -100,6 +102,9 @@ const CadastroCliente = () => {
         if(e.target.name === "complemento"){
             setComplemento(e.target.value)
         }
+        if(e.target.name === "salario"){
+            setSalario(e.target.value)
+        }
         if(e.target.name === "password"){
             setPassword(e.target.value)
         } 
@@ -112,8 +117,8 @@ const CadastroCliente = () => {
                 <div className="container">
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-tittle'>Cadastrar Cliente</h5>
-                            <form onSubmit={cadastrarCliente} className='row g-3'>
+                            <h5 className='card-tittle'>Cadastrar Profissional</h5>
+                            <form onSubmit={cadastrarProfissionais} className='row g-3'>
                                 <div className='col-6'>
                                     <label htmlFor="nome" className='from-label'>Nome</label>
                                     <input 
@@ -235,6 +240,16 @@ const CadastroCliente = () => {
                                     />                                    
                                 </div>
                                 <div className='col-6'>
+                                    <label htmlFor="cep" className='from-label'>Salario</label>
+                                    <input 
+                                    type="text" 
+                                    name='salario' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>
                                     <input 
                                     type="text" 
@@ -268,4 +283,4 @@ const CadastroCliente = () => {
         </div>
     );
 }
-export default CadastroCliente;
+export default CadastroProfssional;
