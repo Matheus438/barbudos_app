@@ -23,13 +23,14 @@ const ListagemClientes = () => {
         async function fetchData() {
             try {
                 const response = await axios.post('http://127.0.0.1:8000/api/nome',
-                    { nome: pesquisa },
+                    { nome: pesquisa, email: pesquisa  },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
                     }
+                
                 ).then(function (response) {
                     if (true === response.data.status) {
                         console.log(response.data.status)
@@ -38,12 +39,16 @@ const ListagemClientes = () => {
                 }).catch(function (error) {
                     console.log(error)
                 });
+                
+                
 
             } catch (error) {
                 console.log(error);
             }
         }   
+        
         fetchData();
+        
     }
 
     useEffect(() => {
