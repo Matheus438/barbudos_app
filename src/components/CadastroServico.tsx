@@ -36,7 +36,13 @@ const CadastroServico = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagemServico"
+            if (response.data.success == true){
+                window.location.href = "/listagemServico"
+            }else{
+                console.log(response.data)
+                alert("ocorreu um erro no cadastro do serviço");
+            }
+            
         }).catch(function(error){
             console.log(error)
         })

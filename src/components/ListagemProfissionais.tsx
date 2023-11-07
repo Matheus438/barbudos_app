@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
-import { isSetAccessorDeclaration } from "typescript";
+import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroProfissionaisInterface } from "../interface/CadastroProfissionais";
 
@@ -23,28 +23,33 @@ const ListagemProfissionais = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
-                    { nome: pesquisa },
+                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                    { nome: pesquisa, email: pesquisa  },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
                     }
+                
                 ).then(function (response) {
                     if (true === response.data.status) {
                         console.log(response.data.status)
-                        setProfissionais(response.data.data)
+                        setPesquisa(response.data.data)
                     }else setProfissionais([])
                 }).catch(function (error) {
                     console.log(error)
                 });
+                
+                
 
             } catch (error) {
                 console.log(error);
             }
         }   
+        
         fetchData();
+        
     }
 
     useEffect(() => {
