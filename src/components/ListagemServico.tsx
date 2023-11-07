@@ -12,7 +12,7 @@ const ListagemServicos = () => {
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisa") {
+        if (e.target.name === "pesquisaServico") {
             setPesquisa(e.target.name);
         }
     }
@@ -22,23 +22,38 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nomeserviço',
-                    { nome: pesquisa },
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
+                    { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
-                    }).then(function (response) {
-                        setServicos(response.data.data);
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+                    }
+
+                ).then(function (response) {
+                    
+                    console.log(response.data)
+                    if (true === response.data.status) {
+                        console.log(response.data)
+                        setServicos(response.data.data)
+                    } else {
+
+                        setServicos([])
+                    }
+                }).catch(function (error) {
+                    console.log(error)
+                });
+
+
+
             } catch (error) {
                 console.log(error);
             }
         }
+
         fetchData();
+
     }
 
     useEffect(() => {
@@ -67,7 +82,7 @@ const ListagemServicos = () => {
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name="pesquisa"
+                                        <input type="text" name="pesquisaServico"
                                             className='form-control'
                                             onChange={handleState} />
                                     </div>

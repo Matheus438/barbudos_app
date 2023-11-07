@@ -13,7 +13,7 @@ const ListagemProfissionais = () => {
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisa") {
+        if (e.target.name === "pesquisaProfissional") {
             setPesquisa(e.target.value);
         }
     }
@@ -23,40 +23,44 @@ const ListagemProfissionais = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
-                    { nome: pesquisa, email: pesquisa  },
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
+                    { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
                     }
-                
+
                 ).then(function (response) {
+                    
+                    console.log(response.data)
                     if (true === response.data.status) {
-                        console.log(response.data.status)
-                        setPesquisa(response.data.data)
-                    }else setProfissionais([])
+                        console.log(response.data)
+                        setProfissionais(response.data.data)
+                    } else {
+
+                        setProfissionais([])
+                    }
                 }).catch(function (error) {
                     console.log(error)
                 });
-                
-                
+
+
 
             } catch (error) {
                 console.log(error);
             }
-        }   
-        
+        }
+
         fetchData();
-        
+
     }
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/retornartodosProfissionais');
-                console.log(response.data.data);
                 setProfissionais(response.data.data);
             } catch (error) {
                 setError("Ocorreu um erro");
@@ -77,7 +81,7 @@ const ListagemProfissionais = () => {
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name='pesquisa' className='form-control'
+                                        <input type="text" name='pesquisaProfissional' className='form-control'
                                             onChange={handleState} />
 
                                     </div>
@@ -104,7 +108,7 @@ const ListagemProfissionais = () => {
                                             <th>celular</th>
                                             <th>salario</th>
                                             <th>E-mail</th>
-                                            <th>Cpf</th> 
+                                            <th>Cpf</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
