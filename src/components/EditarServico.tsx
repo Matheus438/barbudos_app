@@ -1,0 +1,168 @@
+import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from "react";
+
+import styles  from "../App.module.css";
+import Header from "./Header";
+import Footer from "./Footer";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+
+
+const EditarProfissional = () => {
+
+    const [nome, setNome] = useState<string>("");
+    const [celular,setCelular] = useState<string>("");
+    const [email,setEmail] = useState<string>("");
+    const [cpf,setCpf] = useState<string>("");
+    const [nascimento,setNascimento] = useState<string>("");
+    const [cidade,setCidade] = useState<string>("");
+    const [estado,setEstado] = useState<string>("");
+    const [pais,setPais] = useState<string>("");
+    const [rua,setRua] = useState<string>("");
+    const [numero,setNumero] = useState<string>("");
+    const [bairro,setBairro] = useState<string>("");
+    const [cep,setCep] = useState<string>("");
+    const [complemento,setComplemento] = useState<string>("");
+    const [salario,setSalario] = useState<string>("");
+    const [id, setId] = useState<string>();
+
+    const parametro = useParams();
+
+    const atualizar = (e: FormEvent) => {
+
+        e.preventDefault();
+
+        const dados = {
+            id:id,
+            nome: nome,
+            celular: celular,
+            email: email,
+            cpf: cpf,
+
+        }
+        axios.put("http://127.0.0.1:8000/api/updateProfissional",
+        dados,
+        {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        }).then(function(response){
+            window.location.href = "/listagemProfissional";
+        }).catch(function(error){
+            console.log('Ocorreu um erroao atualizar');
+        });
+
+    }
+
+    useEffect(() => {
+         async function fetcData() {
+            try{
+                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId/"+parametro.id);
+                setNome(response.data.data.nome);
+                setCelular(response.data.data.celular);
+                setEmail(response.data.data.email);
+                setCpf(response.data.data.cpf);
+                setNascimento(response.data.data.nascimento);
+                setCidade(response.data.data.cidade);
+                setEstado(response.data.data.estado);
+                setPais(response.data.data.pais);
+                setRua(response.data.data.rua);
+                setNumero(response.data.data.numero)
+                setBairro(response.data.data.bairro);
+                setCep(response.data.data.cep);
+                setComplemento(response.data.data.complemento);
+                setSalario(response.data.data.salario);
+                setId(response.data.data.id);
+                console.log(response)
+            } catch(error){
+                console.log("error ao buscar dados da api");
+            }
+         }
+         fetcData();
+    }, []); 
+
+
+    const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
+        if(e.target.name === "nome"){
+            setNome(e.target.value)
+        }
+        if(e.target.name === "celular"){
+            setCelular(e.target.value)
+        }
+        if(e.target.name === "email"){
+            setEmail(e.target.value)
+        }
+        if(e.target.name === "cpf"){
+            setCpf(e.target.value)
+        }
+        
+    }
+
+    return (
+        <div>
+            <Header />
+            <main className={styles.main}>
+                <div className="container">
+                    <div className='card'>
+                        <div className='card-body'>
+                            <h5 className='card-tittle'>Atualizar Profissional</h5>
+                            <form onSubmit={atualizar} className='row g-3'>
+                            <div className='col-6'>
+                                    <label htmlFor="nome" className='from-label'>Nome</label>
+                                    <input 
+                                    type="text" 
+                                    name='nome' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    value={nome}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="celular" className='from-label'>Celular</label>
+                                    <input 
+                                    type="text" 
+                                    name='celular' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    value={celular}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="email" className='from-label'>E-mail</label>
+                                    <input 
+                                    type="text" 
+                                    name='email' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    value={email}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="cpf" className='from-label'>CPF</label>
+                                    <input 
+                                    type="text" 
+                                    name='cpf' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    value={cpf}
+                                    />                                    
+                                </div>
+                                <div className='col-12'>
+                                    <button type='submit' className='btn btn-success btn-sm'>Atualizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <Footer />
+        </div>
+    );
+}
+
+export default EditarProfissional;
