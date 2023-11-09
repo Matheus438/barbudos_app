@@ -61,6 +61,7 @@ const ListagemProfissionais = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/retornartodosProfissionais');
+                console.log(response);
                 setProfissionais(response.data.data);
             } catch (error) {
                 setError("Ocorreu um erro");
@@ -109,21 +110,21 @@ const ListagemProfissionais = () => {
                                             <th>celular</th>
                                             <th>E-mail</th>
                                             <th>Cpf</th>
-                                            <th>Ações</th>
+                                            <th>Ações</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {profissionais.map(profissionais => (
                                             <tr key={profissionais.id}>
                                                 <td>{profissionais.id}</td>
-                                                <td>{profissionais.nome}</td>                                                <td>{profissionais.salario}</td>
+                                                <td>{profissionais.nome}</td>
                                                 <td>{profissionais.salario}</td>
                                                 <td>{profissionais.celular}</td>
                                                 <td>{profissionais.email}</td>
                                                 <td>{profissionais.cpf}</td>
 
                                                 <td>
-                                                    <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                <Link to={"/editarProfissopnal/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
