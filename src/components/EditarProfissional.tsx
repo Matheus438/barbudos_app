@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 
-const EditarCliente = () => {
+const EditarProfissional = () => {
 
     const [nome, setNome] = useState<string>("");
     const [celular,setCelular] = useState<string>("");
@@ -57,7 +57,7 @@ const EditarCliente = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            window.location.href = "/listagem";
+            window.location.href = "/listagemProfissional";
         }).catch(function(error){
             console.log('Ocorreu um erroao atualizar');
         });
@@ -67,7 +67,7 @@ const EditarCliente = () => {
     useEffect(() => {
          async function fetcData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaId/"+parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId/"+parametro.id);
                 setNome(response.data.data.nome);
                 setCelular(response.data.data.celular);
                 setEmail(response.data.data.email);
@@ -141,7 +141,7 @@ const EditarCliente = () => {
                 <div className="container">
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-tittle'>Atualizar Cliente</h5>
+                            <h5 className='card-tittle'>Atualizar Profissional</h5>
                             <form onSubmit={atualizar} className='row g-3'>
                             <div className='col-6'>
                                     <label htmlFor="nome" className='from-label'>Nome</label>
@@ -310,4 +310,4 @@ const EditarCliente = () => {
     );
 }
 
-export default EditarCliente;
+export default EditarProfissional;

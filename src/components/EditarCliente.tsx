@@ -24,6 +24,7 @@ const EditarCliente = () => {
     const [cep,setCep] = useState<string>("");
     const [complemento,setComplemento] = useState<string>("");
     const [localidade, setLocalidade] = useState<string>("");
+    const [password, setPassword] = useState<string>("")
     const [id, setId] = useState<string>();
 
     const parametro = useParams();
@@ -46,7 +47,9 @@ const EditarCliente = () => {
             numero: numero,
             bairro: bairro,
             cep: cep,
+            localidade: localidade,
             complemento: complemento,
+            password: password
         }
         axios.put("http://127.0.0.1:8000/api/update/",
         dados,
@@ -56,9 +59,10 @@ const EditarCliente = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            window.location.href = "/listagem";
+            console.log(response.data)
+            window.location.href = "/listagem"
         }).catch(function(error){
-            console.log('Ocorreu um erroao atualizar');
+            console.log('Ocorreu um erro ao atualizar');
         });
 
     }
@@ -79,6 +83,7 @@ const EditarCliente = () => {
                 setNumero(response.data.data.numero)
                 setBairro(response.data.data.bairro);
                 setCep(response.data.data.cep);
+                setPassword(response.data.data.password);
                 setComplemento(response.data.data.complemento);
                 setLocalidade(response.data.data.localidade);
                 setId(response.data.data.id);
@@ -127,6 +132,9 @@ const EditarCliente = () => {
         }
         if(e.target.name === "cep"){
             setCep(e.target.value)
+        }
+        if (e.target.name === "password"){
+            setPassword(e.target.value)
         }
         if(e.target.name === "complemento"){
             setComplemento(e.target.value)
@@ -273,6 +281,17 @@ const EditarCliente = () => {
                                     onChange={handleState}
                                     value={cep}
                                     />                                    
+                                </div>
+                                <div className="col-6">
+                                    <label htmlFor="password" className='from-label'>Senha</label>
+                                    <input
+                                     type="password"
+                                     name='password'
+                                     className='form-control'
+                                     required
+                                     onChange={handleState}
+                                     value={password}
+                                     />
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>

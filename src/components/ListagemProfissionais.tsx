@@ -105,8 +105,8 @@ const ListagemProfissionais = () => {
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>celular</th>
                                             <th>salario</th>
+                                            <th>celular</th>
                                             <th>E-mail</th>
                                             <th>Cpf</th>
                                             <th>Ações</th>
@@ -117,6 +117,7 @@ const ListagemProfissionais = () => {
                                             <tr key={profissionais.id}>
                                                 <td>{profissionais.id}</td>
                                                 <td>{profissionais.nome}</td>                                                <td>{profissionais.salario}</td>
+                                                <td>{profissionais.salario}</td>
                                                 <td>{profissionais.celular}</td>
                                                 <td>{profissionais.email}</td>
                                                 <td>{profissionais.cpf}</td>
