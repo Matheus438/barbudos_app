@@ -132,6 +132,9 @@ const EditarProfissional = () => {
         if(e.target.name === "complemento"){
             setComplemento(e.target.value)
         }
+        if (e.target.name === "salario") {
+            setSalario(e.target.value)
+        }
     }
 
     return (
@@ -188,14 +191,14 @@ const EditarProfissional = () => {
                                     />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="cpf" className='from-label'>Salario</label>
+                                    <label htmlFor="salario" className='from-label'>Salario</label>
                                     <input 
                                     type="text" 
                                     name='salario' 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    value={cpf}
+                                    value={salario}
                                     />                                    
                                 </div>
                                 <div className='col-6'>

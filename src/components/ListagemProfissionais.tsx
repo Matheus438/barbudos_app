@@ -23,7 +23,7 @@ const ListagemProfissionais = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
+                const response = await axios.post('http://127.0.0.1:8000/api/ProfissionalNome',
                     { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
