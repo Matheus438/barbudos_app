@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
+import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroServicoInterface } from "../interface/CadastroServico";
 
@@ -13,7 +14,7 @@ const ListagemServicos = () => {
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === "pesquisaServico") {
-            setPesquisa(e.target.name);
+            setPesquisa(e.target.value);
         }
     }
 
@@ -22,7 +23,8 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
+                console.log(pesquisa);
+                const response = await axios.post('http://127.0.0.1:8000/api/nomeserviço',
                     { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
@@ -34,7 +36,7 @@ const ListagemServicos = () => {
                 ).then(function (response) {
                     
                     console.log(response.data)
-                    if (true === response.data.status) {
+                    if (true == response.data.status) {
                         console.log(response.data)
                         setServicos(response.data.data)
                     } else {
@@ -116,12 +118,12 @@ const ListagemServicos = () => {
                                                 <td>{servicos.id}</td>
                                                 <td>{servicos.nome}</td>
                                                 <td>{servicos.descricao}</td>
-                                                <td>{servicos.duracao}r</td>
-                                                <td>{servicos.preco}r</td>
+                                                <td>{servicos.duracao}</td>
+                                                <td>{servicos.preco}</td>
                                                
 
                                                 <td>
-                                                    <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                <Link to={"/editarServico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
