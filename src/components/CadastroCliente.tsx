@@ -72,9 +72,9 @@ const CadastroCliente = () => {
             }).then(response => response.json())
             .then(
                 data => {
-                    setLocalidade(data.localidade);
-                    setCep(data.cep);
-                    setUf(data.uf);
+                    setCidade(data.localidade);
+                  
+                    setEstado(data.uf);
                     setErro("")
                 }
             ).catch(error => {
@@ -192,6 +192,7 @@ const CadastroCliente = () => {
                                     <label htmlFor="cidade" className='from-label'>Cidade</label>
                                     <input 
                                     type="text" 
+                                    value={cidade}
                                     name='cidade' 
                                     className='form-control'
                                     required 
@@ -203,6 +204,7 @@ const CadastroCliente = () => {
                                     <input 
                                     type="text" 
                                     name='estado' 
+                                    value={estado}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -212,6 +214,7 @@ const CadastroCliente = () => {
                                     <label htmlFor="pais" className='from-label'>Pais</label>
                                     <input 
                                     type="text" 
+                                    value={pais}
                                     name='pais' 
                                     className='form-control'
                                     required 
@@ -222,6 +225,7 @@ const CadastroCliente = () => {
                                     <label htmlFor="rua" className='from-label'>Rua</label>
                                     <input 
                                     type="text" 
+                                    value={rua}
                                     name='rua' 
                                     className='form-control'
                                     required 
@@ -242,6 +246,7 @@ const CadastroCliente = () => {
                                     <label htmlFor="bairro" className='from-label'>Bairro</label>
                                     <input 
                                     type="text" 
+                                    value={bairro}
                                     name='bairro' 
                                     className='form-control'
                                     required 
@@ -253,6 +258,7 @@ const CadastroCliente = () => {
                                     <input 
                                     type="text" 
                                     name='cep' 
+                                    onBlur={findCep}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
