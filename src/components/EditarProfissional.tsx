@@ -49,7 +49,7 @@ const EditarProfissional = () => {
             complemento: complemento,
             salario: salario,
         }
-        axios.put("http://127.0.0.1:8000/api/updateProfissional",
+        axios.put("http://127.0.0.1:8000/api/profissional/atualizar",
         dados,
         {
             headers: {
@@ -57,7 +57,8 @@ const EditarProfissional = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            window.location.href = "/listagemProfissional";
+             window.location.href = "/listagemProfissional";
+            
         }).catch(function(error){
             console.log('Ocorreu um erroao atualizar');
         });
@@ -67,7 +68,7 @@ const EditarProfissional = () => {
     useEffect(() => {
          async function fetcData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId/"+parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/profissional/pesquisaId/"+parametro.id);
                 setNome(response.data.data.nome);
                 setCelular(response.data.data.celular);
                 setEmail(response.data.data.email);

@@ -23,7 +23,8 @@ const ListagemProfissionais = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/ProfissionalNome',
+                console.log(pesquisa);
+                const response = await axios.post('http://127.0.0.1:8000/api/profissional/pesquisarNome',
                     { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
@@ -60,7 +61,7 @@ const ListagemProfissionais = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornartodosProfissionais');
+                const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
                 console.log(response);
                 setProfissionais(response.data.data);
             } catch (error) {

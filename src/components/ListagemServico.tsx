@@ -24,7 +24,7 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/nomeserviço',
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/criar',
                     { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
@@ -38,6 +38,7 @@ const ListagemServicos = () => {
                     console.log(response.data)
                     if (true == response.data.status) {
                         console.log(response.data)
+                        window.location.href = "/listagemServico";
                         setServicos(response.data.data)
                     } else {
 
@@ -61,7 +62,7 @@ const ListagemServicos = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTodos');
+                const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos');
                 console.log(response.data.data);
                 setServicos(response.data.data);
             } catch (error) {
