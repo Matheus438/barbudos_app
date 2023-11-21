@@ -48,7 +48,7 @@ const EditarProfissional = () => {
     useEffect(() => {
          async function fetcData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/servico/pesquisarID/"+parametro.id);
+                const response = await axios.post("http://127.0.0.1:8000/api/servico/pesquisarID/"+parametro.id);
                 setNome(response.data.data.nome);
                 setDescricao(response.data.data.descricao);
                 setDuracao(response.data.data.duracao);

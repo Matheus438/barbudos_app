@@ -26,7 +26,7 @@ const CadastroServico = () => {
 
         console.log(dados)
 
-        axios.post('http://127.0.0.1:8000/api/criarServico',
+        axios.post('http://127.0.0.1:8000/api/servico/criar',
         dados,
         {
             headers:{
@@ -36,6 +36,7 @@ const CadastroServico = () => {
         }
         ).then(function(response){
             console.log(response.data)
+            window.location.href = "/listagemServico"
             if (response.data.success == true){
                 
             }else{

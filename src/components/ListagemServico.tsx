@@ -24,8 +24,8 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/servico/criar',
-                    { nome: pesquisa, email: pesquisa },
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/pesquisarNome',
+                    { nome: pesquisa},
                     {
                         headers: {
                             "Accept": "application/json",
@@ -34,7 +34,6 @@ const ListagemServicos = () => {
                     }
 
                 ).then(function (response) {
-                    
                     console.log(response.data)
                     if (true == response.data.status) {
                         console.log(response.data)
@@ -47,18 +46,33 @@ const ListagemServicos = () => {
                 }).catch(function (error) {
                     console.log(error)
                 });
-
-
-
             } catch (error) {
                 console.log(error);
             }
         }
 
         fetchData();
-
     }
-
+    function handleDelete(id: number) {
+        const confirm = window.confirm('Você tem certeza que deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/servico/deletar/' + id)
+                .then(function (response) {
+                    window.location.href = "/listagem/servico/"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
+    }
+    function RedefinirSenha(id: number) {
+        const confirm = window.confirm('Deseja redefinir a senha?');
+        if (confirm)
+        axios.put('http://127.0.0.1:8000/api/cliente/esqueciSenha/' + id)
+            .then(function (response) {
+               
+            }).catch(function (error) {
+                console.log('Ocorreu um erro ao alterar a senha');
+            })
+    }
     useEffect(() => {
         async function fetchData() {
             try {
@@ -111,6 +125,7 @@ const ListagemServicos = () => {
                                             <th>Descrição</th>
                                             <th>Duraçao</th>
                                             <th>Preço</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -125,7 +140,8 @@ const ListagemServicos = () => {
 
                                                 <td>
                                                 <Link to={"/editarServico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                    <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                                <a onClick={e => handleDelete(servicos.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                    <button type="button" className="btn btn-secondary btn-sm">Redefinir Senha</button>
                                                 </td>
                                             </tr>
                                         ))}

@@ -47,7 +47,7 @@ const CadastroCliente = () => {
 
         console.log(dados)
 
-        axios.post('http://127.0.0.1:8000/api/criarCliente',
+        axios.post('http://127.0.0.1:8000/api/cliente/criar',
         dados,
         {
             headers:{
@@ -73,7 +73,7 @@ const CadastroCliente = () => {
             .then(
                 data => {
                     setCidade(data.localidade);
-                  
+                    setPais(data.pais)
                     setEstado(data.uf);
                     setErro("")
                 }
@@ -128,6 +128,8 @@ const CadastroCliente = () => {
             setPassword(e.target.value)
         } 
     }
+
+    
 
     return (
         <div>
@@ -287,7 +289,7 @@ const CadastroCliente = () => {
                                 
                                
                                 <div className='col-12'>
-                                    <button type='submit' className='btn btn-success btn-sm'>Cadastrar</button>
+                                    <button  type='submit' className='btn btn-success btn-sm'>Cadastrar</button>
                                 </div>
                             </form>
                         </div>
