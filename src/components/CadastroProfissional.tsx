@@ -78,7 +78,7 @@ const CadastroProfssional = () => {
                 method: 'GET'
             }).then(response => response.json())
             .then(
-                data => {
+                data => {+
                     setCidade(data.localidade);
                     setPais(data.pais)
                     setEstado(data.uf);
