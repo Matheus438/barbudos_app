@@ -22,6 +22,8 @@ const CadastroProfssional = () => {
     const [complemento,setComplemento] = useState<string>("");
     const [salario,setSalario] = useState<string>("");
     const [password,setPassword] = useState<string>("");
+    const [erro, setErro] = useState<string>("");
+    const [localidade, setLocalidade] = useState<string>("");
     
     const cadastrarProfissionais = (e: FormEvent) => {
         e.preventDefault();
@@ -65,6 +67,28 @@ const CadastroProfssional = () => {
         }).catch(function(error){
             console.log(error)
         })
+    }
+
+    const findCep = (e: FormEvent) => {
+
+        e.preventDefault();
+
+        fetch('https://viacep.com.br/ws/' + cep + '/json',
+            {
+                method: 'GET'
+            }).then(response => response.json())
+            .then(
+                data => {
+                    setCidade(data.localidade);
+                    setPais(data.pais)
+                    setEstado(data.uf);
+                    setErro("")
+                }
+            ).catch(error => {
+                setErro("Pesquisa Inválida");
+            });
+
+        console.log("Localidade:" + localidade);
     }
 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
@@ -179,6 +203,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='cidade' 
+                                    value={cidade}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -188,7 +213,8 @@ const CadastroProfssional = () => {
                                     <label htmlFor="estado" className='from-label'>Estado</label>
                                     <input 
                                     type="text" 
-                                    name='estado' 
+                                    name='estado'
+                                    value={estado} 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -199,6 +225,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='pais' 
+                                    value={pais}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -209,6 +236,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='rua' 
+                                    value={rua}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -229,6 +257,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='bairro' 
+                                    value={bairro}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -239,6 +268,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='cep' 
+                                    onBlur={findCep}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
