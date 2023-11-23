@@ -37,7 +37,7 @@ const ListagemServicos = () => {
                     console.log(response.data)
                     if (true == response.data.status) {
                         console.log(response.data)
-                        window.location.href = "/listagemServico";
+                        window.location.href = "/listagem/Servico";
                         setServicos(response.data.data)
                     } else {
 
@@ -62,16 +62,6 @@ const ListagemServicos = () => {
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
-    }
-    function RedefinirSenha(id: number) {
-        const confirm = window.confirm('Deseja redefinir a senha?');
-        if (confirm)
-        axios.put('http://127.0.0.1:8000/api/cliente/esqueciSenha/' + id)
-            .then(function (response) {
-               
-            }).catch(function (error) {
-                console.log('Ocorreu um erro ao alterar a senha');
-            })
     }
     useEffect(() => {
         async function fetchData() {
@@ -139,9 +129,9 @@ const ListagemServicos = () => {
                                                
 
                                                 <td>
-                                                <Link to={"/editarServico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <Link to={"/editar/Servico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                 <a onClick={e => handleDelete(servicos.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                    <button type="button" className="btn btn-secondary btn-sm">Redefinir Senha</button>
+                                                   
                                                 </td>
                                             </tr>
                                         ))}

@@ -1,5 +1,5 @@
 import React from "react";
-import ListagemClientes from "../components/ListagemClientes";
+import ListagemClient    from "../components/ListagemClientes";
 import CadastroCliente from "../components/CadastroCliente";
 import { 
     BrowserRouter,
@@ -13,13 +13,16 @@ import ListagemProfissionais from "../components/ListagemProfissionais";
 import EditarCliente from "../components/EditarCliente";
 import EditarServico from "../components/EditarServico";
 import EditarProfissional from "../components/EditarProfissional";
+import CadastroAgenda from "../components/CadastroAgenda";
+import ListagemAgenda from "../components/ListagemAgenda";
+import EditarAgenda from "../components/EditarAgenda";
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
         <Routes>
             <Route path="cadastro" element={<CadastroCliente/>}/>
-            <Route path="listagem" element={<ListagemClientes/>}/>
+            <Route path="listagem" element={<ListagemClient/>}/>
             <Route path="/editar/:id" element={<EditarCliente/>}/>
             
 
@@ -30,6 +33,11 @@ const AppRouter = () => {
             <Route path="listagem/Profissional" element={<ListagemProfissionais/>}/>
             <Route path="CadastroProfissional" element={<CadastroProfssional/>}/>
             <Route path="/editarProfissopnal/:id" element={<EditarProfissional/>}/>
+
+            <Route path="agenda/criar" element={<CadastroAgenda/>}/>
+            <Route path="listagem/agenda" element={<ListagemAgenda/>}/>
+            <Route path="editar/Agenda/:id" element={<EditarAgenda/>}/>
+
         </Routes>
         </BrowserRouter>
     );

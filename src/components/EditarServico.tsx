@@ -38,7 +38,7 @@ const EditarProfissional = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            window.location.href = "/listagemServico";
+            window.location.href = "/listagem/Servico";
         }).catch(function(error){
             console.log('Ocorreu um erroao atualizar');
         });

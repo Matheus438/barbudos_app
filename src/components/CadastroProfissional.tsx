@@ -57,7 +57,7 @@ const CadastroProfssional = () => {
         ).then(function(response){
             console.log(response.data)
             if(response.data.success == true){
-            window.location.href = "/listagemProfissional"
+            window.location.href = "/listagem/Profissional"
             }else{
                 console.log(response.data)
                 alert("ocorreu um erro no cadastro do profissional")

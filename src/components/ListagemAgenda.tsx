@@ -4,28 +4,28 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
+import { CadastroAgendaInterface } from "../interface/CadastroAgenda";
 import { CadastroProfissionaisInterface } from "../interface/CadastroProfissionais";
 
-const ListagemProfissionais = () => {
-    const [profissionais, setProfissionais] = useState<CadastroProfissionaisInterface[]>([]);
+const ListagemAgenda = () => {
+    const [agenda, setAgenda] = useState<CadastroAgendaInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisaProfissional") {
+        if (e.target.name === "pesquisaAgenda") {
             setPesquisa(e.target.value);
         }
     }
-
     const buscar = (e: FormEvent) => {
         e.preventDefault();
 
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/profissional/pesquisarNome',
-                    { nome: pesquisa, email: pesquisa },
+                const response = await axios.post('http://127.0.0.1:8000/api/agenda/pesquisaDataHora',
+                    {  dataHora: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
@@ -38,10 +38,10 @@ const ListagemProfissionais = () => {
                     console.log(response.data)
                     if (true === response.data.status) {
                         console.log(response.data)
-                        setProfissionais(response.data.data)
+                        setAgenda(response.data.data)
                     } else {
 
-                        setProfissionais([])
+                        setAgenda([])
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -60,29 +60,19 @@ const ListagemProfissionais = () => {
     function handleDelete(id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/profissional/deletar/' + id)
+            axios.delete('http://127.0.0.1:8000/api/agenda/delete/' + id)
                 .then(function (response) {
-                    window.location.href = "/listagem/Profissional"
+                    window.location.href = "/listagem/agenda"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
     }
-    function RedefinirSenha(id: number) {
-        const confirm = window.confirm('Deseja redefinir a senha?');
-        if (confirm)
-        axios.put('http://127.0.0.1:8000/api/profissional/esqueciSenha/' + id)
-            .then(function (response) {
-               
-            }).catch(function (error) {
-                console.log('Ocorreu um erro ao alterar a senha');
-            })
-    }
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
+                const response = await axios.get('http://127.0.0.1:8000/api/agenda/retornaTodos');
                 console.log(response);
-                setProfissionais(response.data.data);
+                setAgenda(response.data.data);
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error)
@@ -91,7 +81,6 @@ const ListagemProfissionais = () => {
 
         fetchData();
     }, []);
-
     return (
         <div>
             <main className={styles.main}>
@@ -102,7 +91,7 @@ const ListagemProfissionais = () => {
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name='pesquisaProfissional' className='form-control'
+                                        <input type="text" name='pesquisaAgenda' className='form-control'
                                             onChange={handleState} />
 
                                     </div>
@@ -119,34 +108,34 @@ const ListagemProfissionais = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Profissionais
+                                    Listagem das Agenda
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>salario</th>
-                                            <th>celular</th>
-                                            <th>E-mail</th>
-                                            <th>Cpf</th>
-                                            <th>Ações</th> 
+                                            <th>profissional_Id</th>
+                                            <th>cliente_Id</th>
+                                            <th>servico_Id</th>
+                                            <th>dataHora</th>
+                                            <th>pagamento</th>
+                                            <th>valor</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {profissionais.map(profissionais => (
-                                            <tr key={profissionais.id}>
-                                                <td>{profissionais.id}</td>
-                                                <td>{profissionais.nome}</td>
-                                                <td>{profissionais.salario}</td>
-                                                <td>{profissionais.celular}</td>
-                                                <td>{profissionais.email}</td>
-                                                <td>{profissionais.cpf}</td>
+                                        {agenda.map(agenda => (
+                                            <tr key={agenda.id}>
+                                                <td>{agenda.id}</td>
+                                                <td>{agenda.profissional_Id}</td>
+                                                <td>{agenda.cliente_Id}</td>
+                                                <td>{agenda.servico_Id}</td>
+                                                <td>{agenda.dataHora}</td>
+                                                <td>{agenda.pagamento}</td>
+                                                <td>{agenda.valor}</td>
 
                                                 <td>
-                                                <Link to={"/editarProfissopnal/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(profissionais.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                <a onClick={e => RedefinirSenha(profissionais.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
+                                                <Link to={"/editar/Agenda/"+ agenda.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
                                         ))}
@@ -160,4 +149,5 @@ const ListagemProfissionais = () => {
         </div>
     );
 }
-export default ListagemProfissionais;
+export default ListagemAgenda;
+
