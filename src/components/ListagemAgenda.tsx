@@ -5,7 +5,7 @@ import React, {
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroAgendaInterface } from "../interface/CadastroAgenda";
-import { CadastroProfissionaisInterface } from "../interface/CadastroProfissionais";
+
 
 const ListagemAgenda = () => {
     const [agenda, setAgenda] = useState<CadastroAgendaInterface[]>([]);
@@ -120,6 +120,7 @@ const ListagemAgenda = () => {
                                             <th>dataHora</th>
                                             <th>pagamento</th>
                                             <th>valor</th> 
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -134,7 +135,6 @@ const ListagemAgenda = () => {
                                                 <td>{agenda.valor}</td>
 
                                                 <td>
-                                                <Link to={"/editar/Agenda/"+ agenda.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                 <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>

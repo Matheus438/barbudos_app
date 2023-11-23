@@ -34,12 +34,12 @@ const ListagemServicos = () => {
                     }
 
                 ).then(function (response) {
+                    
                     console.log(response.data)
-                    if (true == response.data.status) {
+                    if (true === response.data.status) {
                         console.log(response.data)
-                        window.location.href = "/listagem/Servico";
                         setServicos(response.data.data)
-                    } else {
+                    } else  {
 
                         setServicos([])
                     }
@@ -116,6 +116,7 @@ const ListagemServicos = () => {
                                             <th>Duraçao</th>
                                             <th>Preço</th>
                                             <th>Ações</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
