@@ -21,12 +21,12 @@ const AppRouter = () => {
     return (
         <BrowserRouter>
         <Routes>
-            <Route path="cadastro" element={<CadastroCliente/>}/>
-            <Route path="listagem" element={<ListagemClient/>}/>
-            <Route path="/editar/:id" element={<EditarCliente/>}/>
+            <Route path="cliente/cadastro" element={<CadastroCliente/>}/>
+            <Route path="cliente/listagem" element={<ListagemClient/>}/>
+            <Route path="cliente/editar/:id" element={<EditarCliente/>}/>
             
 
-            <Route path="cadastroServico" element={<CadastroServico/>}/>
+            <Route path="cadastro/Servico" element={<CadastroServico/>}/>
             <Route path="listagem/Servico" element={<ListagemServicos/>}/>
             <Route path="/editar/Servico/:id" element={<EditarServico/>}/>
 
