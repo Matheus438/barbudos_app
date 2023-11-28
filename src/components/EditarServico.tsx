@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 
-const EditarProfissional = () => {
+const EditarServico = () => {
 
     const [nome, setNome] = useState<string>("");
     const [descricao, setDescricao] = useState<string>("");
@@ -146,4 +146,4 @@ const EditarProfissional = () => {
     );
 }
 
-export default EditarProfissional;
+export default EditarServico;

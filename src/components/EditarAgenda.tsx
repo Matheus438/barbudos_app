@@ -16,6 +16,8 @@ const EditarAgenda = () => {
     const [uf, setUf] = useState<string>("");
     const [erro, setErro] = useState<string>("");
     
+    const parametro = useParams();
+    
     const cadastrarAgenda = (e: FormEvent) => {
         e.preventDefault();
 
@@ -40,11 +42,28 @@ const EditarAgenda = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/agenda/retornaTodos"
+            window.location.href = "/listagem/agenda"
         }).catch(function(error){
             console.log(error)
         })
     }
+    useEffect(() => {
+
+        async function fetcData() {
+           try{
+               const response = await axios.get("http://127.0.0.1:8000/api/servico/pesquisarID/"+parametro.id);
+               setProfissional_Id(response.data.data.nome);
+               setCliente_Id(response.data.data.descricao);
+               setServico_Id(response.data.data.duracao);
+               setDataHora(response.data.data.preco);
+               setValor(response.data.data.id);
+               console.log(response)
+           } catch(error){
+               console.log("error ao buscar dados da api");
+           }
+        }
+        fetcData();
+   }, []); 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
         if(e.target.name === "profissional_Id"){
             setProfissional_Id(e.target.value)

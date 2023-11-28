@@ -136,6 +136,7 @@ const ListagemAgenda = () => {
 
                                                 <td>
                                                 <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                <Link to={"/editar/agenda/"+ agenda.id}  className='btn m-1 btn-primary btn-sm' >Editar</Link>
                                                 </td>
                                             </tr>
                                         ))}

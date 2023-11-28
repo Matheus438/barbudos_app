@@ -131,7 +131,7 @@ const ListagemServicos = () => {
 
                                                 <td>
                                                 <Link to={"/editar/Servico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(servicos.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                <a onClick={e => handleDelete(servicos.id)} className='btn m-1 btn-danger btn-sm'>Excluir</a>
                                                    
                                                 </td>
                                             </tr>
