@@ -57,7 +57,7 @@ const EditarProfissional = () => {
         setBairroErro("")
         setCepErro("")
         setComplementoErro("")
-        setSalarioErro
+        setSalarioErro("")
         setPasswordErro("")
 
 
@@ -234,7 +234,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={nome}
-                                    />                                    
+                                    /> 
+                                     <div className='text-danger'>{nomeErro}</div>                                     
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="celular" className='from-label'>Celular</label>
@@ -245,7 +246,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={celular}
-                                    />                                    
+                                    />       
+                                     <div className='text-danger'>{celularErro}</div>                                  
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='from-label'>E-mail</label>
@@ -256,7 +258,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={email}
-                                    />                                    
+                                    />         
+                                      <div className='text-danger'>{emailErro}</div>                          
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cpf" className='from-label'>CPF</label>
@@ -267,7 +270,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={cpf}
-                                    />                                    
+                                    />            
+                                     <div className='text-danger'>{cpfErro}</div>                           
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="salario" className='from-label'>Salario</label>
@@ -278,7 +282,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={salario}
-                                    />                                    
+                                    />             
+                                    <div className='text-danger'>{SalarioErro}</div>                         
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
@@ -289,7 +294,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={nascimento}
-                                    />                                    
+                                    />                
+                                    <div className='text-danger'>{nascimentoErro}</div>                      
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='from-label'>Cidade</label>
@@ -300,7 +306,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={cidade}
-                                    />                                    
+                                    />                    
+                                    <div className='text-danger'>{cidadeErro}</div>                 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="estado" className='from-label'>Estado</label>
@@ -311,7 +318,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={estado}
-                                    />                                    
+                                    />                     
+                                    <div className='text-danger'>{estadoErro}</div>                
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="pais" className='from-label'>Pais</label>
@@ -322,7 +330,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={pais}
-                                    />                                    
+                                    />               
+                                    <div className='text-danger'>{paisErro}</div>                       
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="rua" className='from-label'>Rua</label>
@@ -333,7 +342,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={rua}
-                                    />                                    
+                                    />                
+                                    <div className='text-danger'>{ruaErro}</div>                       
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="numero" className='from-label'>Numero</label>
@@ -344,7 +354,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={numero}
-                                    />                                    
+                                    />                    
+                                    <div className='text-danger'>{numeroErro}</div>                    
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="bairro" className='from-label'>Bairro</label>
@@ -355,7 +366,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={bairro}
-                                    />                                    
+                                    />                   
+                                     <div className='text-danger'>{bairroErro}</div>                  
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cep" className='from-label'>CEP</label>
@@ -366,7 +378,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={cep}
-                                    />                                    
+                                    />           
+                                    <div className='text-danger'>{cepErro}</div>                          
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>
@@ -377,7 +390,8 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={complemento }
-                                    />                                    
+                                    />            
+                                     <div className='text-danger'>{complementoErro}</div>                             
                                 </div>
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sm'>Atualizar</button>

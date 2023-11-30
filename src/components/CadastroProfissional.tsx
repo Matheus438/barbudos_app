@@ -54,7 +54,7 @@ const CadastroProfssional = () => {
         setBairroErro("")
         setCepErro("")
         setComplementoErro("")
-        setSalarioErro
+        setSalarioErro("")
         setPasswordErro("")
 
         e.preventDefault();
@@ -241,7 +241,8 @@ const CadastroProfssional = () => {
                                     required 
                                     onChange={handleState}
                                     />                     
-                                     <div className='text-danger'>{celularErro}</div>                
+                                    
+                                               
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='from-label'>E-mail</label>
