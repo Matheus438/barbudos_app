@@ -5,6 +5,8 @@ import React, {
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroClienteInterface } from "../interface/CadastroClientes";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const ListagemClientes = () => {
     const [clientes, setClientes] = useState<CadastroClienteInterface[]>([]);
@@ -80,9 +82,16 @@ const ListagemClientes = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/cliente/retornarTudo');
-                console.log(response.data.data);
-                setClientes(response.data.data);
-            } catch (error) {
+                if(response.data.status === true){
+                    console.log(response.data.data);
+                    setClientes(response.data.data);
+                }
+                else{
+                    console.log("Erro");
+                   
+                }
+               
+            } catch (error) { 
                 setError("Ocorreu um erro");
                 console.log(error)
             }
@@ -93,6 +102,7 @@ const ListagemClientes = () => {
 
     return (
         <div>
+            <Header />
             <main className={styles.main}>
                 <div className='container'>
                     <div className='col-md mb-3'>
@@ -118,7 +128,7 @@ const ListagemClientes = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Usuários
+                                    Listagem de Clientes
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>

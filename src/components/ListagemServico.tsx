@@ -5,6 +5,7 @@ import React, {
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroServicoInterface } from "../interface/CadastroServico";
+import Header from "./Header";
 
 const ListagemServicos = () => {
     const [servicos, setServicos] = useState<CadastroServicoInterface[]>([]);
@@ -67,10 +68,17 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos');
-                console.log(response.data.data);
-                setServicos(response.data.data);
-            } catch (error) {
-                setError("Ocrreu um erro");
+                if(response.data.status === true){
+                    console.log(response.data.data);
+                    setServicos(response.data.data);
+                }
+                else{
+                    console.log("Erro");
+                   
+                }
+               
+            } catch (error) { 
+                setError("Ocorreu um erro");
                 console.log(error)
             }
         }
@@ -80,6 +88,7 @@ const ListagemServicos = () => {
 
     return (
         <div>
+            <Header />
             <main className={styles.main}>
                 <div className='container'>
 

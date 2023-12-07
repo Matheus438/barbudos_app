@@ -50,14 +50,14 @@ const EditarServico = () => {
                 if ('nome' in response.data.error) {
                     setErroNome(response.data.error.nome[0])
                 }
-                if ('celular' in response.data.error) {
-                    setDescricaoErro(response.data.error.celular[0])
+                if ('descricao' in response.data.error) {
+                    setDescricaoErro(response.data.error.descricao[0])
                 }
-                if ('email' in response.data.error) {
-                    setDuracaoErro(response.data.error.email[0])
+                if ('duracao' in response.data.error) {
+                    setDuracaoErro(response.data.error.duracao[0])
                 }
-                if ('cpf' in response.data.error) {
-                    setPrecoErro(response.data.error.cpf[0])
+                if ('preco' in response.data.error) {
+                    setPrecoErro(response.data.error.preco[0])
                 }
             } else {
             window.location.href = "/listagem/Servico"

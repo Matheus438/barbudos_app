@@ -131,7 +131,7 @@ const EditarCliente = () => {
                     setPasswordErro(response.data.error.password[0])
                 }
             } else {
-            window.location.href = "/cliente/listagem"
+            //window.location.href = "/cliente/listagem"
             }
         }).catch(function(error){
             console.log('Ocorreu um erro ao atualizar');

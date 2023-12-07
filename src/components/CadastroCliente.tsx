@@ -6,6 +6,7 @@ import Header from "./Header"
 import axios from "axios";
 
 
+
 const CadastroCliente = () => {
     const [nome, setNome] = useState<string>("");
     const [celular,setCelular] = useState<string>("");

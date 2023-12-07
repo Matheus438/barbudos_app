@@ -5,6 +5,8 @@ import React, {
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroProfissionaisInterface } from "../interface/CadastroProfissionais";
+import EditarProfissional from "./EditarProfissional";
+import Header from "./Header";
 
 const ListagemProfissionais = () => {
     const [profissionais, setProfissionais] = useState<CadastroProfissionaisInterface[]>([]);
@@ -101,6 +103,7 @@ const ListagemProfissionais = () => {
 
     return (
         <div>
+            <Header />
             <main className={styles.main}>
                 <div className='container'>
                     <div className='col-md mb-3'>
@@ -141,19 +144,19 @@ const ListagemProfissionais = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {profissionais.map(profissionais => (
-                                            <tr key={profissionais.id}>
-                                                <td>{profissionais.id}</td>
-                                                <td>{profissionais.nome}</td>
-                                                <td>{profissionais.salario}</td>
-                                                <td>{profissionais.celular}</td>
-                                                <td>{profissionais.email}</td>
-                                                <td>{profissionais.cpf}</td>
+                                        {profissionais.map(profissional => (
+                                            <tr key={profissional.id}>
+                                                <td>{profissional.id}</td>
+                                                <td>{profissional.nome}</td>
+                                                <td>{profissional.salario}</td>
+                                                <td>{profissional.celular}</td>
+                                                <td>{profissional.email}</td>
+                                                <td>{profissional.cpf}</td>
 
                                                 <td>
-                                                <Link to={"/profissional/editar/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(profissionais.id)} className='btn m-1 btn-danger btn-sm'>Excluir</a>
-                                                <a onClick={e => RedefinirSenha(profissionais.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
+                                                <Link to={"/profissional/editar/"+ profissional.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <a onClick={e => handleDelete(profissional.id)} className='btn m-1 btn-danger btn-sm'>Excluir</a>
+                                                <a onClick={e => RedefinirSenha(profissional.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
                                                 </td>
                                             </tr>
                                         ))}

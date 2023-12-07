@@ -5,6 +5,7 @@ import React, {
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroAgendaInterface } from "../interface/CadastroAgenda";
+import Header from "./Header";
 
 
 const ListagemAgenda = () => {
@@ -90,12 +91,14 @@ const ListagemAgenda = () => {
     }, []);
     return (
         <div>
+            <Header />
             <main className={styles.main}>
                 <div className='container'>
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
+                                
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
                                         <input type="text" name='pesquisaAgenda' className='form-control'
@@ -122,11 +125,7 @@ const ListagemAgenda = () => {
                                         <tr>
                                             <th>ID</th>
                                             <th>profissional_Id</th>
-                                            <th>cliente_Id</th>
-                                            <th>servico_Id</th>
                                             <th>dataHora</th>
-                                            <th>pagamento</th>
-                                            <th>valor</th> 
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
@@ -135,15 +134,11 @@ const ListagemAgenda = () => {
                                             <tr key={agenda.id}>
                                                 <td>{agenda.id}</td>
                                                 <td>{agenda.profissional_Id}</td>
-                                                <td>{agenda.cliente_Id}</td>
-                                                <td>{agenda.servico_Id}</td>
                                                 <td>{agenda.dataHora}</td>
-                                                <td>{agenda.pagamento}</td>
-                                                <td>{agenda.valor}</td>
 
                                                 <td>
                                                 <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                <Link to={"/editar/agenda/"+ agenda.id}  className='btn m-1 btn-primary btn-sm' >Editar</Link>
+
                                                 </td>
                                             </tr>
                                         ))}
